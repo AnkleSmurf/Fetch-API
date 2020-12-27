@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, send_file, request
+from graph__dataset_copy import Graph
 import db
 app = Flask(__name__)
 
@@ -17,8 +18,8 @@ def test():
     db.db.collection.insert_one({"name": "John"})
     return "Connected to the data base!"
 
-@app.route('/get_image')
-def get_image():
+@app.route('/get_image/<file_name>')
+def get_image(file_name):
     if request.args.get('type') == '1':
        filename = 'sample.png'
     else:
